@@ -1,8 +1,9 @@
+import config from './config/index.js';
 import Koa from 'koa';
 import json from 'koa-json';
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
-import config from './config/index.js';
+import sequelize from './db/index.js';
 
 const app = new Koa();
 
@@ -19,7 +20,11 @@ app.use(async (ctx, next) => {
         ctx.app.emit('error', err, ctx);
     }
 });
-
-app.listen(config.port, () => {
-    console.log(`Server is running on port ${config.port}`);
-});
+sequelize
+    .authenticate()
+    .then(() =>
+        app.listen(config.port, () => {
+            console.log(`Server is running on port ${config.port}`);
+        })
+    )
+    .catch((err) => console.error('Unable to connect to the database: ', err));
