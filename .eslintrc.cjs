@@ -14,6 +14,7 @@ module.exports = {
 	},
 	rules: {
 		'prettier/prettier': ['error'],
+		'capitalized-comments': ['off']
 		// 'indent': ['error', 4]
 	},
 };

@@ -2,6 +2,7 @@ import Koa from 'koa';
 import json from 'koa-json';
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
+import config from './config/index.js';
 
 const app = new Koa();
 
@@ -19,6 +20,6 @@ app.use(async (ctx, next) => {
     }
 });
 
-app.listen(5000, () => {
-    console.log(`Server is running on port ${5000}`);
+app.listen(config.port, () => {
+    console.log(`Server is running on port ${config.port}`);
 });
