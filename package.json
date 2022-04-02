@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "npx eslint .",
+    "migrate": "npx sequelize-cli db:migrate",
+    "m:undo": "npx sequelize-cli db:migrate:undo:all"
   },
   "keywords": [
     "koa",
